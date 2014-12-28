@@ -10,12 +10,20 @@
 
 <div id="startpage">
     <h1>Välkommen</h1>
-    <a id="startplay-button" href="#">Börja spela</a>
+    <a id="startnewgame-button" href="#">Börja spela</a>
 </div>
 
 <div id="playpage" style="display:none">
-    <h1>Förklara:</h1>
-    <h2 id="theword"></h2>
+    <h1 id="currentteam">Team X</h1>
+    <a id="startround" href="#">Börja förklaring</a>
+
+    <div id="roundpage" style="display:none">
+        <h2 id="timeleft">30</h2>
+        <h3 id="currentword">word</h3>
+        <a id="skipword" href="#">Hoppa över</a>
+        <a id="correctword" href="#">Nästa</a>
+    </div>
+
 </div>
 
 </body>
