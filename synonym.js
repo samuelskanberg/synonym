@@ -13,6 +13,7 @@ $(document).ready(function() {
     var current_word = "foo";
     var correct_words = [];
     var skipped_words = [];
+    var stolen_words = [];
 
     $("#startnewgame-button").click(function() {
         start_new_game();
@@ -22,6 +23,7 @@ $(document).ready(function() {
     function start_new_game() {
         $("#startpage").hide();
         $("#playpage").show();
+        $("#scorepage").show();
 
         team1_count = 0;
         team2_count = 0;
@@ -39,7 +41,9 @@ $(document).ready(function() {
         $("#roundpage").show();
 
         countdown_counter = 5;
-        correct_words = []
+        correct_words = [];
+        skipped_words = [];
+        stolen_words = [];
 
         set_new_random_word();
 
@@ -49,16 +53,32 @@ $(document).ready(function() {
 
     $("#nextword").click(function() {
         correct_words.push(current_word);
-        set_new_random_word();
+        if (countdown_counter > 0) {
+            set_new_random_word();
+        } else {
+            show_results();
+        }
 
         return false;
     });
 
     $("#skipword").click(function() {
         skipped_words.push(current_word);
-        set_new_random_word();
+        if (countdown_counter > 0) {
+            set_new_random_word();
+        } else {
+            show_results();
+        }
 
         return false;
+    });
+
+    $("#wordstolen").click(function() {
+        stolen_words.push(current_word);
+        show_results();
+
+        return false;
+
     });
 
     function set_new_random_word() {
@@ -78,6 +98,11 @@ $(document).ready(function() {
     }
 
     function finish_round() {
+        $("#skipword").hide();
+        $("#wordstolen").show();
+    }
+
+    function show_results() {
         console.log("Correct words:");
         console.log(correct_words);
 
@@ -92,7 +117,12 @@ $(document).ready(function() {
         $("#skippedwords").html(skipped_words_string);
         $("#skippedwordscount").val(skipped_words.length);
 
+        var stolen_words_string = stolen_words.join(", "); 
+        $("#stolenwords").html(stolen_words_string);
+        $("#stolenwordscount").val(stolen_words.length);
+
         $("#roundresultpage").show();
+
     }
 
     function get_random_word() {

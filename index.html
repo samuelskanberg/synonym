@@ -14,6 +14,11 @@
 </div>
 
 <div id="playpage" style="display:none">
+    <div id="scorepage" style="display:none">
+        <strong>Team 1:</strong><span id="team1score">0</span>
+        <strong>Team 2:</strong><span id="team2score">0</span>
+    </div>
+
     <h1 id="currentteam">Team X</h1>
     <a id="startround" href="#">Börja förklaring</a>
 
@@ -21,7 +26,8 @@
         <h2 id="timeleft">30</h2>
         <h3 id="currentword">word</h3>
         <a id="skipword" href="#">Hoppa över</a>
-        <a id="nextword" href="#">Nästa</a>
+        <a id="wordstolen" href="#" style="display:none">Förlorade ord</a>
+        <a id="nextword" href="#">Klar</a>
     </div>
 
     <div id="roundresultpage" style="display:none">
@@ -34,6 +40,13 @@
         <h3>Skippade ord</h3>
         <p id="skippedwords"></p>
         <input id="skippedwordscount" type="number">
+
+        <h3>Till andra laget</h3>
+        <p id="stolenwords"></p>
+        <input id="stolenwordscount" type="number">
+
+        <a id="submitscore" href="#">Lägg till poäng</a>
+
     </div>
 
 </div>
