@@ -28,6 +28,19 @@ $(document).ready(function() {
         team1_count = 0;
         team2_count = 0;
         current_team = 1;
+
+        prepare_new_round();
+    }
+
+    function prepare_new_round() {
+        refresh_score();
+       
+        $("#startround").show();     
+        $("#roundpage").hide();
+        $("#skipword").show();
+        $("#wordstolen").hide();
+        $("#roundresultpage").hide();
+
         $("#currentteam").html("Team "+current_team);
     }
 
@@ -122,8 +135,46 @@ $(document).ready(function() {
         $("#stolenwordscount").val(stolen_words.length);
 
         $("#roundresultpage").show();
-
     }
+
+    function refresh_score() {
+        $("#team1score").html(team1_count);
+        $("#team2score").html(team2_count);
+    }
+
+    function next_team() {
+        if (current_team == 1) {
+            current_team = 2;
+        } else {
+            current_team = 1;
+        }
+    }
+
+    $("#submitscore").click(function() {
+        var correct = parseInt($("#correctwordscount").val());
+        var skipped = parseInt($("#skippedwordscount").val());
+        var total = correct-skipped;
+        var other_team = parseInt($("#stolenwordscount").val());
+
+        if (current_team == 1) {
+            team1_count += total;
+            team2_count += other_team;
+        } else {
+            team2_count += total;
+            team1_count += other_team;
+        }
+
+        console.log("correct: "+correct);
+        console.log("skipped: "+skipped);
+        console.log("total: "+total);
+        console.log("other_team: "+other_team);
+
+        refresh_score();
+        next_team();
+        prepare_new_round();
+
+        return false;
+    });
 
     function get_random_word() {
         randomizer++;
