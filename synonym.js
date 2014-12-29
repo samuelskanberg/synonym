@@ -1,6 +1,8 @@
 $(document).ready(function() {
     console.log("document loaded");
 
+    //var score_limit = 70;
+    var score_limit = 20;
     var wordlist = ["foo", "bar", "pizza", "kalsonger", "ananas", "bananer", "kall", "varm"];
     var randomizer = 0;
 
@@ -15,7 +17,16 @@ $(document).ready(function() {
     var skipped_words = [];
     var stolen_words = [];
 
+    prepare_new_game();
+
+    function prepare_new_game() {
+        $("#startpage").show();
+        $("#scorelimit").val(score_limit);
+    }
+
     $("#startnewgame-button").click(function() {
+        score_limit = $("#scorelimit").val();
+        console.log("score limit: "+score_limit);
         start_new_game();
         return false;
     });
@@ -173,11 +184,35 @@ $(document).ready(function() {
         console.log("other_team: "+other_team);
 
         refresh_score();
-        next_team();
-        prepare_new_round();
+
+        if (has_winner()) {
+            console.log("Has winner");
+            show_winner();
+        } else {
+            next_team();
+            prepare_new_round();
+        }
 
         return false;
     });
+
+    function has_winner() {
+        return (team1_count >= score_limit || team2_count >= score_limit);
+    }
+
+    function show_winner() {
+        console.log("Show winner");
+        var winner_team;
+        if (team1_count >= score_limit) {
+            winner_team = "Team 1";
+        } else {
+            winner_team = "Team 2";
+        }
+
+        $("#roundresultpage").hide();
+        $("#winner").html(winner_team);
+        $("#winnerresultpage").show();
+    }
 
     function get_random_word() {
         randomizer++;
