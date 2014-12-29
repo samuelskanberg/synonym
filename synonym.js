@@ -51,6 +51,7 @@ $(document).ready(function() {
 
     function start_round(team_count) {
         console.log("Start round!");
+        $("#startround").hide();
         $("#roundpage").show();
 
         countdown_counter = 5;
@@ -69,6 +70,7 @@ $(document).ready(function() {
         if (countdown_counter > 0) {
             set_new_random_word();
         } else {
+            $("#currentword").html("");
             show_results();
         }
 
@@ -80,6 +82,7 @@ $(document).ready(function() {
         if (countdown_counter > 0) {
             set_new_random_word();
         } else {
+            $("#currentword").html("");
             show_results();
         }
 
@@ -88,10 +91,10 @@ $(document).ready(function() {
 
     $("#wordstolen").click(function() {
         stolen_words.push(current_word);
+        $("#currentword").html("");
         show_results();
 
         return false;
-
     });
 
     function set_new_random_word() {
@@ -100,22 +103,22 @@ $(document).ready(function() {
     }
 
     function count_down() {
+        countdown_counter = countdown_counter-1;
         console.log("Count down. Counter: "+countdown_counter);
         $("#timeleft").html(""+countdown_counter);
         if (countdown_counter > 0) {
             setTimeout(count_down, 1000);
-            countdown_counter = countdown_counter-1;
         } else {
             finish_round();
         }
     }
 
     function finish_round() {
-        $("#skipword").hide();
         $("#wordstolen").show();
     }
 
     function show_results() {
+        $("#roundpage").hide();
         console.log("Correct words:");
         console.log(correct_words);
 
