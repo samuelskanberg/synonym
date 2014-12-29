@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var sound_effect = new Audio("blip.ogg"); // buffers automatically when created
+
     console.log("document loaded");
 
     var score_limit = 70;
@@ -78,7 +80,7 @@ $(document).ready(function() {
         $("#startround").hide();
         $("#roundpage").show();
 
-        countdown_counter = 10;
+        countdown_counter = 60;
         correct_words = [];
         dropped_words = [];
         stolen_words = [];
@@ -138,6 +140,7 @@ $(document).ready(function() {
     }
 
     function finish_round() {
+        sound_effect.play();
         $("#wordstolen").show();
     }
 
