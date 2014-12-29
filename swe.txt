@@ -3179,7 +3179,7 @@ ofruktbar
 ofta
 ofördelaktig
 ofördragsam
-oförhoppandes
+oförhappandes
 oförklarlig
 oförmedlad
 oförmodad
@@ -3208,10 +3208,8 @@ olycksfall
 olydig
 olåt
 om
-om aftarna
 om morgonen
 om natten
-om än
 omak
 omdöme
 omelett

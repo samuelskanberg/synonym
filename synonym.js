@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     var current_word = "foo";
     var correct_words = [];
-    var skipped_words = [];
+    var dropped_words = [];
     var stolen_words = [];
 
     prepare_new_game();
@@ -61,7 +61,7 @@ $(document).ready(function() {
        
         $("#startround").show();     
         $("#roundpage").hide();
-        $("#skipword").show();
+        $("#dropword").show();
         $("#wordstolen").hide();
         $("#roundresultpage").hide();
 
@@ -78,9 +78,9 @@ $(document).ready(function() {
         $("#startround").hide();
         $("#roundpage").show();
 
-        countdown_counter = 60;
+        countdown_counter = 10;
         correct_words = [];
-        skipped_words = [];
+        dropped_words = [];
         stolen_words = [];
 
         set_new_random_word();
@@ -101,9 +101,9 @@ $(document).ready(function() {
         return false;
     });
 
-    $("#skipword").click(function() {
-        skipped_words.push(current_word);
+    $("#dropword").click(function() {
         if (countdown_counter > 0) {
+            dropped_words.push(current_word);
             set_new_random_word();
         } else {
             $("#currentword").html("");
@@ -147,15 +147,15 @@ $(document).ready(function() {
         console.log(correct_words);
 
         console.log("Skipped words:");
-        console.log(skipped_words);
+        console.log(dropped_words);
 
         var correct_words_string = correct_words.join(", "); 
         $("#correctwords").html(correct_words_string);
         $("#correctwordscount").val(correct_words.length);
 
-        var skipped_words_string = skipped_words.join(", "); 
-        $("#skippedwords").html(skipped_words_string);
-        $("#skippedwordscount").val(skipped_words.length);
+        var dropped_words_string = dropped_words.join(", "); 
+        $("#droppedwords").html(dropped_words_string);
+        $("#droppedwordscount").val(dropped_words.length);
 
         var stolen_words_string = stolen_words.join(", "); 
         $("#stolenwords").html(stolen_words_string);
@@ -179,8 +179,8 @@ $(document).ready(function() {
 
     $("#submitscore").click(function() {
         var correct = parseInt($("#correctwordscount").val());
-        var skipped = parseInt($("#skippedwordscount").val());
-        var total = correct-skipped;
+        var dropped = parseInt($("#droppedwordscount").val());
+        var total = correct-dropped;
         var other_team = parseInt($("#stolenwordscount").val());
 
         if (current_team == 1) {
@@ -192,7 +192,7 @@ $(document).ready(function() {
         }
 
         console.log("correct: "+correct);
-        console.log("skipped: "+skipped);
+        console.log("dropped: "+dropped);
         console.log("total: "+total);
         console.log("other_team: "+other_team);
 
