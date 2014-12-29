@@ -1,8 +1,8 @@
 $(document).ready(function() {
     console.log("document loaded");
 
-    //var score_limit = 70;
-    var score_limit = 20;
+    var score_limit = 70;
+    //var score_limit = 20;
     var wordlist = ["foo", "bar", "pizza", "kalsonger", "ananas", "bananer", "kall", "varm"];
     var randomizer = 0;
 
@@ -10,7 +10,8 @@ $(document).ready(function() {
     var team2_count = 0;
     
     var current_team = 1;
-    var countdown_counter = 5;
+    var countdown_counter = 60;
+    //var countdown_counter = 5;
 
     var current_word = "foo";
     var correct_words = [];
@@ -27,6 +28,18 @@ $(document).ready(function() {
     $("#startnewgame-button").click(function() {
         score_limit = $("#scorelimit").val();
         console.log("score limit: "+score_limit);
+        //var url = "ordlista.txt";
+        //var url = "oneword.txt";
+        var url = "swe.txt";
+        $.ajax({
+            url: url,
+            success: function (data){
+                console.log("done loading");
+                wordlist = data.split('\n');
+                // Skip last word which is empty because of the last newline
+                wordlist.pop();
+            }
+        });
         start_new_game();
         return false;
     });
@@ -65,7 +78,7 @@ $(document).ready(function() {
         $("#startround").hide();
         $("#roundpage").show();
 
-        countdown_counter = 5;
+        countdown_counter = 60;
         correct_words = [];
         skipped_words = [];
         stolen_words = [];
@@ -215,8 +228,8 @@ $(document).ready(function() {
     }
 
     function get_random_word() {
-        randomizer++;
-        return wordlist[randomizer%wordlist.length];
+        var word = wordlist[Math.floor(Math.random()*wordlist.length)];
+        console.log("Random word: "+word);
+        return word;
     }
-
 });
