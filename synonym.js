@@ -22,6 +22,35 @@ $(document).ready(function() {
 
     prepare_new_game();
 
+    $(document).keypress(function(e){
+        if ($("#roundpage").is(':visible')) {
+            console.log("is visible");
+            switch (e.keyCode) {
+                case 40:
+                    console.log('down');
+                    $("#dropword").trigger("click");
+                    break;
+                case 38:
+                    console.log('up');
+                    break;
+                case 37:
+                    console.log('left');
+                    if ($("#wordstolen").is(":visible")) {
+                        $("#wordstolen").trigger("click");
+                    }
+                    break;
+                case 39:
+                    console.log('right');
+                    $("#nextword").trigger("click");
+                    break;
+                default:
+                    console.log('???');  
+                } 
+        } else {
+            console.log("is NOT visible");
+        }
+    });
+
     function prepare_new_game() {
         $("#startpage").show();
         $("#scorelimit").val(score_limit);
