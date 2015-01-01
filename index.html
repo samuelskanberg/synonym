@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Synonym</title>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="synonym.js"></script>
@@ -19,20 +21,24 @@
     </div>
 
     <div id="playpage" style="display:none">
+
         <div id="scorepage" style="display:none">
             <strong>Team 1:</strong><span id="team1score">0</span>
             <strong>Team 2:</strong><span id="team2score">0</span>
         </div>
 
-        <h1 id="currentteam">Team X</h1>
-        <button id="startround" class="btn btn-lg btn-success" type="button">Börja förklara</button>
-
         <div id="roundpage" style="display:none">
-            <h2 id="timeleft">30</h2>
-            <h3 id="currentword">word</h3>
-            <button id="wordstolen" class="btn btn-lg btn-danger" type="button">← Stulet</button>
-            <button id="dropword" class="btn btn-lg btn-warning" type="button">↓ Droppa</button>
-            <button id="nextword" class="btn btn-lg btn-success" type="button">Klar →</button>
+            <h1 id="currentteam">Team X</h1>
+            <button id="startround" class="btn btn-lg btn-success" type="button">Börja förklara</button>
+
+            <div id="activeroundpage" style="display:none">
+                <h2 id="timeleft">30</h2>
+                <h3 id="currentword">word</h3>
+                <button id="wordstolen" class="btn btn-lg btn-danger" type="button">← Stulet</button>
+                <button id="dropword" class="btn btn-lg btn-warning" type="button">↓ Droppa</button>
+                <button id="nextword" class="btn btn-lg btn-success" type="button">Klar →</button>
+            </div>
+
         </div>
 
         <div id="roundresultpage" style="display:none">
@@ -49,15 +55,17 @@
             <h3>Stulna ord</h3>
             <p id="stolenwords"></p>
             <input id="stolenwordscount" type="number">
-
-            <a id="submitscore" href="#">Lägg till poäng</a>
+            
+            <hr/>
+            <button id="submitscore" class="btn btn-lg btn-success" type="button">Lägg till poäng</button>
         </div>
 
         <div id="winnerresultpage" style="display:none">
             <h2>Vinnaren är</h2>
             <span id="winner">Team X</span>
 
-            <a id="playagain-button" href="">Spela igen</a>
+            <hr/>
+            <button id="playagain-button" class="btn btn-lg btn-success" type="button">Spela igen</button>
         </div>
 
     </div>
