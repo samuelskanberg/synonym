@@ -23,7 +23,7 @@ $(document).ready(function() {
     prepare_new_game();
 
     $(document).keypress(function(e){
-        if ($("#roundpage").is(':visible')) {
+        if ($("#activeroundpage").is(':visible')) {
             console.log("is visible");
             switch (e.keyCode) {
                 case 40:
@@ -53,6 +53,9 @@ $(document).ready(function() {
 
     function prepare_new_game() {
         $("#startpage").show();
+        $("#winnerresultpage").hide();
+        $("#roundpage").hide();
+        $("#scorepage").hide();
         $("#scorelimit").val(score_limit);
     }
 
@@ -91,7 +94,8 @@ $(document).ready(function() {
         refresh_score();
        
         $("#startround").show();     
-        $("#roundpage").hide();
+        $("#roundpage").show();
+        $("#activeroundpage").hide();
         $("#dropword").show();
         $("#wordstolen").hide();
         $("#roundresultpage").hide();
@@ -107,9 +111,9 @@ $(document).ready(function() {
     function start_round(team_count) {
         console.log("Start round!");
         $("#startround").hide();
-        $("#roundpage").show();
+        $("#activeroundpage").show();
 
-        countdown_counter = 60;
+        countdown_counter = 5;
         correct_words = [];
         dropped_words = [];
         stolen_words = [];
@@ -174,7 +178,7 @@ $(document).ready(function() {
     }
 
     function show_results() {
-        $("#roundpage").hide();
+        $("#activeroundpage").hide();
         console.log("Correct words:");
         console.log(correct_words);
 
@@ -258,6 +262,10 @@ $(document).ready(function() {
         $("#winner").html(winner_team);
         $("#winnerresultpage").show();
     }
+
+    $("#playagain-button").click(function() {
+        prepare_new_game();
+    });
 
     function get_random_word() {
         var word = wordlist[Math.floor(Math.random()*wordlist.length)];
