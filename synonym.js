@@ -113,7 +113,7 @@ $(document).ready(function() {
         $("#startround").hide();
         $("#activeroundpage").show();
 
-        countdown_counter = 5;
+        countdown_counter = 60;
         correct_words = [];
         dropped_words = [];
         stolen_words = [];
