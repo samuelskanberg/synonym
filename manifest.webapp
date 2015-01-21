@@ -1,0 +1,15 @@
+{
+  "name": "Synonym",
+  "description": "Swedish word playing game",
+  "launch_path": "/synonym/index.html",
+  "icons": {
+    "16": "/synonym/icons/icon16x16.png",
+    "48": "/synonym/icons/icon48x48.png",
+    "60": "/synonym/icons/icon60x60.png",
+    "128": "/synonym/icons/icon128x128.png"
+  },
+  "developer": {
+    "name": "Samuel Skånberg",
+    "url": "http://samuelskanberg.github.io"
+  }
+}
