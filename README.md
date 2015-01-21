@@ -3,6 +3,8 @@ Synonym
 
 Synonym är ett ordförklaringsspel som "Med andra ord" och "Alias", mest likt "Alias".
 
+Besök [http://samuelskanberg.github.io/synonym/](http://samuelskanberg.github.io/synonym/) för att spela det!
+
 
 Credits
 =======
