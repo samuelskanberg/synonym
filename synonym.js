@@ -31,18 +31,16 @@ $(document).ready(function() {
     console.log("document loaded");
 
     var score_limit = 70;
-    //var score_limit = 20;
-    var wordlist = ["foo", "bar", "pizza", "kalsonger", "ananas", "bananer", "kall", "varm"];
+    var wordlist = [];
     var randomizer = 0;
 
     var team1_count = 0;
     var team2_count = 0;
-    
+
     var current_team = 1;
     var countdown_counter = 60;
-    //var countdown_counter = 5;
 
-    var current_word = "foo";
+    var current_word = "";
     var correct_words = [];
     var dropped_words = [];
     var stolen_words = [];
@@ -71,8 +69,8 @@ $(document).ready(function() {
                     $("#nextword").trigger("click");
                     break;
                 default:
-                    console.log('???');  
-                } 
+                    console.log('???');
+                }
         } else {
             console.log("is NOT visible");
         }
@@ -88,14 +86,16 @@ $(document).ready(function() {
 
     $("#startnewgame-button").click(function() {
         score_limit = $("#scorelimit").val();
-        console.log("score limit: "+score_limit);
-        //var url = "ordlista.txt";
-        //var url = "oneword.txt";
+
+        var language = $( "input:radio[name=language]:checked" ).val();
         var url = "swe.txt";
+        if (language == 'english') {
+          url = "en.txt";
+        }
+
         $.ajax({
             url: url,
             success: function (data){
-                console.log("done loading");
                 wordlist = data.split('\n');
                 // Skip last word which is empty because of the last newline
                 wordlist.pop();
@@ -119,8 +119,8 @@ $(document).ready(function() {
 
     function prepare_new_round() {
         refresh_score();
-       
-        $("#startround").show();     
+
+        $("#startround").show();
         $("#roundpage").show();
         $("#activeroundpage").hide();
         $("#dropword").show();
@@ -132,8 +132,8 @@ $(document).ready(function() {
 
     $("#startround").click(function() {
         start_round(current_team);
-        return false; 
-    }); 
+        return false;
+    });
 
     function start_round(team_count) {
         console.log("Start round!");
@@ -212,15 +212,15 @@ $(document).ready(function() {
         console.log("Skipped words:");
         console.log(dropped_words);
 
-        var correct_words_string = correct_words.join(", "); 
+        var correct_words_string = correct_words.join(", ");
         $("#correctwords").html(correct_words_string);
         $("#correctwordscount").val(correct_words.length);
 
-        var dropped_words_string = dropped_words.join(", "); 
+        var dropped_words_string = dropped_words.join(", ");
         $("#droppedwords").html(dropped_words_string);
         $("#droppedwordscount").val(dropped_words.length);
 
-        var stolen_words_string = stolen_words.join(", "); 
+        var stolen_words_string = stolen_words.join(", ");
         $("#stolenwords").html(stolen_words_string);
         $("#stolenwordscount").val(stolen_words.length);
 
